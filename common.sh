@@ -2,7 +2,7 @@
 
 # --- Variable --- #
 
-github="https://github.com/Blackjackfan"
+github="https://github.com/dwmfan"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
