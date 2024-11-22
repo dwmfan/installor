@@ -12,13 +12,13 @@ else
     error "Updating Pacman"
 fi
 
-if sudo pacman -S discord easyeffects lsp-plugins go neofetch htop openssh xcompmgr python-pywal vim libxft libxinerama ttf-hack ttf-font-awesome feh keepassxc rclone fuse3 less zsh jq bc lolcat xdotool xorg-xrandr remmina udisks2 udiskie nvidia nvidia-settings pipewire pipewire-pulse wireplumber flameshot pcmanfm veracrypt; then
+if sudo pacman -S discord easyeffects lsp-plugins go neofetch htop openssh xcompmgr python-pywal vim libxft libxinerama ttf-hack ttf-font-awesome feh keepassxc rclone fuse3 less zsh jq bc lolcat xdotool xorg-xrandr remmina udisks2 udiskie nvidia nvidia-settings pipewire pipewire-pulse wireplumber flameshot pcmanfm veracrypt freerdp; then
 
     success "Applications installed"
 else
     error "Installing applications"
 fi
-gg
+
 # --- Folder --- #
 
 if git clone $github/dir-creator && cd dir-creator && chmod +x dir-creator && ./dir-creator && cd ~; then
