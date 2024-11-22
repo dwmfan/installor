@@ -12,7 +12,7 @@ else
     error "Updating Pacman"
 fi
 
-if sudo pacman -S discord easyeffects lsp-plugins go neofetch htop openssh xcompmgr python-pywal vim libxft libxinerama ttf-hack ttf-font-awesome feh keepassxc rclone fuse3 less zsh jq bc lolcat xdotool xorg-xrandr remmina udisks2 udiskie nvidia nvidia-settings pipewire pipewire-pulse wireplumber flameshot pcmanfm veracrypt freerdp; then
+if sudo pacman -S discord easyeffects lsp-plugins go neofetch htop openssh xcompmgr python-pywal vim libxft libxinerama ttf-hack ttf-font-awesome feh keepassxc rclone fuse3 less zsh jq bc lolcat xdotool xorg-xrandr remmina udisks2 udiskie nvidia nvidia-settings pipewire pipewire-pulse wireplumber flameshot pcmanfm veracrypt freerdp gnome-boxes; then
 
     success "Applications installed"
 else
