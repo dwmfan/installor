@@ -46,7 +46,7 @@ fi
 
 # # --- Yay App --- #
 
-for app in brave-bin mullvad-vpn-bin visual-studio-code-bin brillo calf-git simplescreenrecorder; do
+for app in brave-bin mullvad-vpn-bin visual-studio-code-bin brillo calf-git simplescreenrecorder ttf-meslo; do
     if yay -S $app; then
         success "$app installed"
     else 
