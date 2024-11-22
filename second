@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# --- Include --- #
+
+source common.sh
+
+# --- Set WallPaper --- #
+
+if setwallpaper; then
+    success "Wallpaper set"
+else 
+    error "Setting Wallpaper"
+fi
+
+# --- Dmenu --- #
+
+if git clone $github/dmenu ~/.local/src/dmenu && cd ~/.local/src/dmenu && sudo make clean install && cd ~; then
+    success "Dmenu installed"
+else 
+    error "Installing Dmenu"
+fi
+
+# --- Refresh Rate --- #
+
+if xrandr --output DP-0 --mode 1920x1080 --rate 240; then
+    success "Resolution updated"
+else 
+    error "Updating Resolution"
+fi

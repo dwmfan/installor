@@ -1,0 +1,123 @@
+#!/bin/bash
+
+# --- Include --- #
+
+source common.sh
+
+# --- Package --- #
+
+if sudo pacman -Syu; then
+    success "Pacman updated"
+else
+    error "Updating Pacman"
+fi
+
+if sudo pacman -S discord easyeffects lsp-plugins go neofetch htop openssh xcompmgr python-pywal vim libxft libxinerama ttf-hack ttf-font-awesome feh keepassxc rclone fuse3 less zsh jq bc lolcat xdotool xorg-xrandr remmina udisks2 udiskie nvidia nvidia-settings pipewire pipewire-pulse wireplumber flameshot pcmanfm veracrypt; then
+
+    success "Applications installed"
+else
+    error "Installing applications"
+fi
+gg
+# --- Folder --- #
+
+if git clone $github/dir-creator && cd dir-creator && chmod +x dir-creator && ./dir-creator && cd ~; then
+    rm -rf dir-creator
+    success "Dir created"
+else 
+    error "Installing dir-creator"
+fi
+
+# --- Bin --- #
+
+if git clone $github/bin ~/.local/bin && cd ~/.local/bin && chmod +x btc setwallpaper vpn wallpaper && cd ~; then
+    success "Bin installed"
+else 
+    error "Installing Bin"
+fi
+
+# --- Yay --- #
+
+if git clone https://aur.archlinux.org/yay.git ~/.local/src/yay && cd ~/.local/src/yay && makepkg -si && cd ~; then
+    success "Yay installed"
+else    
+    error "Installing Yay"
+fi
+
+# # --- Yay App --- #
+
+for app in brave-bin mullvad-vpn-bin visual-studio-code-bin brillo calf-git simplescreenrecorder; do
+    if yay -S $app; then
+        success "$app installed"
+    else 
+        error "Installing $app"
+    fi
+done
+
+# --- Xinitrc --- #
+
+if git clone $github/xinitrc temp && mv temp/.xinitrc ~ && rm -rf temp; then
+    success "Xinitrc installed"
+else 
+    error "Installing Xinitrc"
+fi
+
+# # --- Vscode --- #
+
+if git clone $github/vscode-config temp && mkdir -p ~/.config/Code/User/ && mv temp/* ~/.config/Code/User/ && rm -rf temp; then
+    success "Vscode Config installed"
+else 
+    error "Installing Vscode Config"
+fi
+
+# --- Zsh --- #
+
+export RUNZSH=no
+if sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && sudo rm -f ~/.zshrc && git clone $github/zshrc temp && mv temp/.zshrc ~ && rm -rf temp && sudo rm -f ~/.oh-my-zsh/themes/alanpeabody.zsh-theme && git clone $github/alanpeabody temp && mv temp/alanpeabody.zsh-theme ~/.oh-my-zsh/themes && rm -rf temp ; then
+    success "Zsh installed"
+else 
+    error "Installing Zsh"
+fi
+
+# --- WallPaper --- #
+
+if git clone $github/wallpaper ~/Pix/Wallpaper; then
+    success "Wallpaper installed"
+else
+    error "Installing wallpaper"
+fi
+
+# --- Suckless --- #
+
+for repo in dwm st dwmblocks; do 
+    if git clone $github/$repo ~/.local/src/$repo && cd ~/.local/src/$repo && sudo make clean install && cd ~; then
+        success "$repo installed"
+    else 
+        error "Installing $repo"
+    fi
+done
+
+# --- Pipewire --- #
+
+if systemctl --user enable pipewire &&  systemctl --user enable pipewire-pulse && systemctl --user enable wireplumber; then
+    succes "Pipewire installed"
+else 
+    erro "Installing Pipewire"
+fi
+
+# --- Summary Print --- #
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo "Summary of installations:"
+echo -e "${GREEN}Successes:${NC}"
+for msg in "${successes[@]}"; do
+    echo -e "${GREEN}success $msg${NC}"
+done
+
+echo -e "${RED}Errors:${NC}"
+for msg in "${errors[@]}"; do
+    echo -e "${RED}error $msg${NC}"
+done
